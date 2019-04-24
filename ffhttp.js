@@ -20,7 +20,7 @@ const _post = state => ({
 })
 
 const _put = state => ({
-  put: (url, data) => _sharedFetch(state, 'PuT', url, data)
+  put: (url, data) => _sharedFetch(state, 'PUT', url, data)
 })
 
 const _delete = state => ({

@@ -41,3 +41,19 @@ http
   .then(res => console.log(res))
   .catch(err => console.log(err))
 ```
+
+---
+
+Each instance has methods for
+
+- GET
+- POST
+- PUT
+- DELETE
+
+| request | method             |
+| ------- | ------------------ |
+| GET     | `.get(url)`        |
+| POST    | `.post(url, data)` |
+| PUT     | `.put(url, data)`  |
+| DELETE  | `.delete(url)`     |

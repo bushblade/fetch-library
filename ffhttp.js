@@ -1,4 +1,4 @@
-const sharedFetch = async (state, method, url, data = null) => {
+const _sharedFetch = async (state, method, url, data = null) => {
   const config = {
     method,
     headers: state.headers
@@ -12,19 +12,19 @@ const sharedFetch = async (state, method, url, data = null) => {
 }
 
 const _get = state => ({
-  get: url => sharedFetch(state, 'GET', url)
+  get: url => _sharedFetch(state, 'GET', url)
 })
 
 const _post = state => ({
-  post: (url, data) => sharedFetch(state, 'POST', url, data)
+  post: (url, data) => _sharedFetch(state, 'POST', url, data)
 })
 
 const _put = state => ({
-  put: (url, data) => sharedFetch(state, 'POST', url, data)
+  put: (url, data) => _sharedFetch(state, 'POST', url, data)
 })
 
 const _delete = state => ({
-  delete: url => sharedFetch(state, 'DELETE', url)
+  delete: url => _sharedFetch(state, 'DELETE', url)
 })
 
 const easyHTTP = (baseUrl = '', headers = { 'content-type': 'application/json' }) => {

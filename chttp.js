@@ -33,12 +33,3 @@ class HTTP {
     return this._sharedFetch('DELETE', url)
   }
 }
-
-// instantiate with baseURL
-const http = new HTTP('https://jsonplaceholder.typicode.com')
-
-// then call it
-http
-  .get('/posts')
-  .then(res => console.log(res))
-  .catch(err => console.log(err))

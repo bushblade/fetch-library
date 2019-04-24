@@ -34,12 +34,3 @@ const easyHTTP = (baseUrl = '', headers = { 'content-type': 'application/json' }
   }
   return Object.assign(state, _get(state), _post(state), _put(state), _delete(state))
 }
-
-// instantiate with baseURL
-const http = easyHTTP('https://jsonplaceholder.typicode.com')
-
-// then call it
-http
-  .get('/posts')
-  .then(res => console.log(res))
-  .catch(err => console.log(err))

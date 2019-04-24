@@ -21,6 +21,8 @@ http
   .catch(err => console.log(err))
 ```
 
+---
+
 ### ffhttp.js
 
 Factory function based library

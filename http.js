@@ -1,54 +1,44 @@
-class EasyHTTP {
-  constructor(baseUrl = '') {
+class HTTP {
+  constructor(baseUrl = '', headers = { 'content-type': 'application/json' }) {
     this.baseUrl = baseUrl
-    this.headers = {}
-  }
-  #throwError = res => {
-    throw Error(`${res.status} message: ${res.statusText}`)
+    this.headers = headers
   }
 
-  async get(url) {
-    const response = await fetch(`${baseUrl}${url}`).then(res => {
-      if (!res.ok) throw Error(`${res.status} message: ${res.statusText}`)
-      return res.json()
-    })
-    return response
-  }
-  //make HTTP Post request
-  async post(url, data) {
-    const response = await fetch(`${baseUrl}${url}`, {
-      method: 'POST',
-      headers: this.headers,
-      body: JSON.stringify(data)
-    }).then(res => {
-      if (!res.ok) throw Error(`${res.status} message: ${res.statusText}`)
-      return res.json()
-    })
-    return response
-  }
-
-  //make an HTTP Put request
-  async put(url, data) {
-    const response = await fetch(`${baseUrl}${url}`, {
-      method: 'PUT',
-      headers: this.headers,
-      body: JSON.stringify(data)
-    }).then(res => {
-      if (!res.ok) throw Error(`${res.status} message: ${res.statusText}`)
-      return res.json()
-    })
-    return response
-  }
-
-  //make an HTTP delete request
-  async delete(url) {
-    const response = await fetch(`${baseUrl}${url}`, {
-      method: 'DELETE',
+  async _sharedFetch(method, url, data = null) {
+    const config = {
+      method,
       headers: this.headers
-    }).then(res => {
+    }
+    if (data) config.body = JSON.stringify(data)
+    const response = await fetch(`${this.baseUrl}${url}`, config).then(res => {
       if (!res.ok) throw Error(`${res.status} message: ${res.statusText}`)
       return res.json()
     })
     return response
+  }
+
+  get(url) {
+    return this._sharedFetch('GET', url)
+  }
+
+  post(url, data) {
+    return this._sharedFetch('POST', url, data)
+  }
+
+  put(url, data) {
+    return this._sharedFetch('PUT', url, data)
+  }
+
+  delete(url) {
+    return this._sharedFetch('DELETE', url)
   }
 }
+
+// instantiate with baseURL
+const http = new HTTP('https://jsonplaceholder.typicode.com')
+
+// then call it
+http
+  .get('/posts')
+  .then(res => console.log(res))
+  .catch(err => console.log(err))

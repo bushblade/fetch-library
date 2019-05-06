@@ -1,8 +1,4 @@
 const easyHTTP = (baseUrl = '', headers = { 'content-type': 'application/json' }) => {
-  const state = {
-    baseUrl,
-    headers
-  }
   const sharedFetch = async (method, url, data = null) => {
     const config = {
       method,

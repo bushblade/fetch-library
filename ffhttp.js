@@ -34,3 +34,5 @@ const easyHTTP = (baseUrl = '', headers = { 'content-type': 'application/json' }
   }
   return Object.assign(state, _get(state), _post(state), _put(state), _delete(state))
 }
+
+export default easyHTTP

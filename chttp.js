@@ -33,3 +33,5 @@ class HTTP {
     return this._sharedFetch('DELETE', url)
   }
 }
+
+export default HTTP

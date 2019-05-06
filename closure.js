@@ -2,7 +2,7 @@ const easyHTTP = (baseUrl = '', headers = { 'content-type': 'application/json' }
   const sharedFetch = async (method, url, data = null) => {
     const config = {
       method,
-      headers: state.headers
+      headers
     }
     if (data) config.body = JSON.stringify(data)
     const response = await fetch(`${baseUrl}${url}`, config).then(res => {

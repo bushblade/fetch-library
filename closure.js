@@ -1,11 +1,11 @@
 const easyHTTP = (baseUrl = '', headers = { 'content-type': 'application/json' }) => {
-  const sharedFetch = async (method, url, data = null) => {
+  const sharedFetch = async (method, endPoint, data = null) => {
     const config = {
       method,
       headers
     }
     if (data) config.body = JSON.stringify(data)
-    const response = await fetch(`${baseUrl}${url}`, config).then(res => {
+    const response = await fetch(`${baseUrl}${endPoint}`, config).then(res => {
       if (!res.ok) throw Error(`${res.status} message: ${res.statusText}`)
       return res.json()
     })
@@ -13,17 +13,17 @@ const easyHTTP = (baseUrl = '', headers = { 'content-type': 'application/json' }
   }
 
   return {
-    get(url) {
-      return sharedFetch('GET', url)
+    get(endPoint) {
+      return sharedFetch('GET', endPoint)
     },
-    post(url) {
-      return sharedFetch('POST', url, data)
+    post(endPoint) {
+      return sharedFetch('POST', endPoint, data)
     },
-    put(url) {
-      return sharedFetch('PUT', url, data)
+    put(endPoint) {
+      return sharedFetch('PUT', endPoint, data)
     },
-    delete(url) {
-      sharedFetch('DELETE', url)
+    delete(endPoint) {
+      sharedFetch('DELETE', endPoint)
     }
   }
 }

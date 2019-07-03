@@ -11,7 +11,7 @@ const http = easyHTTP('https://jsonplaceholder.typicode.com')
 Then use it
 
 ```js
-easyHTTP
+http
   .get('/posts')
   .then(res => console.log(res))
   .catch(err => console.log(err))

@@ -26,9 +26,9 @@ Each instance has methods for
 - PUT
 - DELETE
 
-| request | method             |
-| ------- | ------------------ |
-| GET     | `.get(url)`        |
-| POST    | `.post(url, data)` |
-| PUT     | `.put(url, data)`  |
-| DELETE  | `.delete(url)`     |
+| request | method                  |
+| ------- | ----------------------- |
+| GET     | `.get(endPoint)`        |
+| POST    | `.post(endPoint, data)` |
+| PUT     | `.put(endPoint, data)`  |
+| DELETE  | `.delete(endPoint)`     |

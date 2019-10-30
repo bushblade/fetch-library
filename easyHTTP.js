@@ -16,10 +16,10 @@ const easyHTTP = (baseUrl = '', headers = {}) => {
     get(endPoint) {
       return sharedFetch('GET', endPoint)
     },
-    post(endPoint) {
+    post(endPoint, data) {
       return sharedFetch('POST', endPoint, data)
     },
-    put(endPoint) {
+    put(endPoint, data) {
       return sharedFetch('PUT', endPoint, data)
     },
     delete(endPoint) {

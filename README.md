@@ -5,7 +5,9 @@ closure based library
 instantiate passing in a base url as first argument and any custom headers as the second argument.
 
 ```js
-const http = easyHTTP('https://jsonplaceholder.typicode.com')
+// with deno
+import http from 'https://raw.githubusercontent.com/bushblade/fetch-library/master/index.js'
+const api = http('https://jsonplaceholder.typicode.com')
 ```
 
 Then use it
@@ -13,8 +15,8 @@ Then use it
 ```js
 http
   .get('/posts')
-  .then(res => console.log(res))
-  .catch(err => console.log(err))
+  .then((res) => console.log(res))
+  .catch((err) => console.log(err))
 ```
 
 ---

@@ -1,16 +1,17 @@
-const easyHTTP = (baseUrl = '', headers = {}) => {
+export default (baseUrl = '', headers = {}) => {
   const sharedFetch = async (method, endPoint, data = null) => {
     const config = {
       method,
       headers: { 'Content-Type': 'application/json', ...headers }
     }
     if (data) config.body = JSON.stringify(data)
-    const response = await fetch(`${baseUrl}${endPoint}`, config).then(
-      (res) => {
-        if (!res.ok) throw Error(`${res.status} message: ${res.statusText}`)
-        return res.json()
-      }
-    )
+    const response = await fetch(
+      encodeURI(`${baseUrl}${endPoint}`),
+      config
+    ).then((res) => {
+      if (!res.ok) throw Error(`${res.status} message: ${res.statusText}`)
+      return res.json()
+    })
     return response
   }
 
@@ -29,5 +30,3 @@ const easyHTTP = (baseUrl = '', headers = {}) => {
     }
   }
 }
-
-export default easyHTTP

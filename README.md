@@ -13,7 +13,7 @@ const api = http('https://jsonplaceholder.typicode.com')
 Then use it
 
 ```js
-http
+api
   .get('/posts')
   .then((res) => console.log(res))
   .catch((err) => console.log(err))

@@ -1,18 +1,15 @@
-export default (baseUrl = '', headers = {}) => {
+function main(baseUrl = '', headers = {}) {
   const sharedFetch = async (method, endPoint, data = null) => {
     const config = {
       method,
       headers: { 'Content-Type': 'application/json', ...headers }
     }
     if (data) config.body = JSON.stringify(data)
-    const response = await fetch(
-      encodeURI(`${baseUrl}${endPoint}`),
-      config
-    ).then((res) => {
-      if (!res.ok) throw Error(`${res.status} message: ${res.statusText}`)
-      return res.json()
-    })
-    return response
+    const response = await fetch(encodeURI(`${baseUrl}${endPoint}`), config)
+
+    if (!response.ok)
+      throw Error(`${response.status} message: ${response.statusText}`)
+    return response.json()
   }
 
   return {
@@ -30,3 +27,5 @@ export default (baseUrl = '', headers = {}) => {
     }
   }
 }
+
+export default main

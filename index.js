@@ -1,26 +1,35 @@
 function main(baseUrl = '', headers = {}) {
-  const sharedFetch = async (method, endPoint, data = null) => {
+  const sharedFetch = async (method, endPoint, body = null) => {
     const config = {
       method,
       headers: { 'Content-Type': 'application/json', ...headers }
     }
-    if (data) config.body = JSON.stringify(data)
+    if (body) config.body = JSON.stringify(body)
     const response = await fetch(encodeURI(`${baseUrl}${endPoint}`), config)
 
-    if (!response.ok)
-      throw Error(`${response.status} message: ${response.statusText}`)
-    return response.json()
+    return new Promise(async (resolve, reject) => {
+      let data = {}
+      if (response.json) data = await response.json()
+      if (!response.ok) {
+        const error = new Error(
+          `${response.status} message: ${response.statusText}`
+        )
+        reject({ error, data })
+      } else {
+        resolve({ data })
+      }
+    })
   }
 
   return {
     get(endPoint) {
       return sharedFetch('GET', endPoint)
     },
-    post(endPoint, data) {
-      return sharedFetch('POST', endPoint, data)
+    post(endPoint, body) {
+      return sharedFetch('POST', endPoint, body)
     },
-    put(endPoint, data) {
-      return sharedFetch('PUT', endPoint, data)
+    put(endPoint, body) {
+      return sharedFetch('PUT', endPoint, body)
     },
     delete(endPoint) {
       return sharedFetch('DELETE', endPoint)

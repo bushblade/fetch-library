@@ -15,8 +15,12 @@ Then use it
 ```js
 api
   .get('/posts')
-  .then((res) => console.log(res))
-  .catch((err) => console.log(err))
+  .then(({ data }) => {
+    console.log('got a response', data)
+  })
+  .catch(({ error, data }) => {
+    console.log('caught an error', error, data)
+  })
 ```
 
 ---
@@ -31,6 +35,6 @@ Each instance has methods for
 | request | method                  |
 | ------- | ----------------------- |
 | GET     | `.get(endPoint)`        |
-| POST    | `.post(endPoint, data)` |
-| PUT     | `.put(endPoint, data)`  |
+| POST    | `.post(endPoint, body)` |
+| PUT     | `.put(endPoint, body)`  |
 | DELETE  | `.delete(endPoint)`     |

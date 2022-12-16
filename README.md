@@ -4,7 +4,7 @@ closure based library
 
 instantiate passing in a base url as first argument and any custom headers as the second argument.
 
-```js
+```javascript
 // with deno
 import http from 'https://raw.githubusercontent.com/bushblade/fetch-library/master/index.js'
 const api = http('https://jsonplaceholder.typicode.com')
@@ -12,7 +12,7 @@ const api = http('https://jsonplaceholder.typicode.com')
 
 Then use it
 
-```js
+```javascript
 api
   .get('/posts')
   .then(({ data }) => {
@@ -25,7 +25,7 @@ api
 
 Example that handles a bad response from a server
 
-```js
+```javascript
 // fake bad response with message from server
 const api = http('https://run.mocky.io/v3/7d8c436e-d1dc-4857-b0ac-7e3e8047aef8')
 
@@ -37,7 +37,6 @@ api
   .catch(({ error, data }) => {
     console.log('caught an error', error, data)
   })
-
 ```
 
 ---

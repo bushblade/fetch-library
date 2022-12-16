@@ -23,6 +23,23 @@ api
   })
 ```
 
+Example that handles a bad response from a server
+
+```js
+// fake bad response with message from server
+const api = http('https://run.mocky.io/v3/7d8c436e-d1dc-4857-b0ac-7e3e8047aef8')
+
+api
+  .get('/posts')
+  .then(({ data }) => {
+    console.log('got a response', data)
+  })
+  .catch(({ error, data }) => {
+    console.log('caught an error', error, data)
+  })
+
+```
+
 ---
 
 Each instance has methods for

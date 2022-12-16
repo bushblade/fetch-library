@@ -1,5 +1,5 @@
 function main(baseUrl = '', headers = {}) {
-  const sharedFetch = async (method, endPoint, body = null) => {
+  async function sharedFetch(method, endPoint, body = null) {
     const config = {
       method,
       headers: { 'Content-Type': 'application/json', ...headers }

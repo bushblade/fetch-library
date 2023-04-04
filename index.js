@@ -1,5 +1,3 @@
-// const contentType = response.headers.get('Content-Type')
-// if (contentType && contentType.includes('application/json')) {
 function main(baseUrl = '', headers = {}) {
   async function sharedFetch(method, endPoint, body = null) {
     const config = {

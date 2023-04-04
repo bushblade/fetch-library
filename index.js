@@ -1,3 +1,5 @@
+// const contentType = response.headers.get('Content-Type')
+// if (contentType && contentType.includes('application/json')) {
 function main(baseUrl = '', headers = {}) {
   async function sharedFetch(method, endPoint, body = null) {
     const config = {
@@ -9,7 +11,9 @@ function main(baseUrl = '', headers = {}) {
 
     return new Promise(async (resolve, reject) => {
       let data = {}
-      if (response.json) data = await response.json()
+      const contentType = response.headers.get('Content-Type')
+      if (contentType && contentType.includes('application/json'))
+        data = await response.json()
       if (!response.ok) {
         const error = new Error(
           `${response.status} message: ${response.statusText}`
